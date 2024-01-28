@@ -1,13 +1,17 @@
+import css from './Searchbar.module.css';
+import { FaSearch } from 'react-icons/fa';
+
 export const Searchbar = ({ onSubmit }) => {
   return (
-    <header className="searchbar">
-      <form className="form" onSubmit={onSubmit}>
-        <button type="submit" className="button">
-          <span className="button-label">Search</span>
+    <header className={css.searchBar}>
+      <form className={css.searchForm} onSubmit={onSubmit}>
+        <button type="submit" className={css.searchFormButton}>
+          <FaSearch />
+          <span className={css.searchFormButtonLabel}>Search</span>
         </button>
 
         <input
-          className="input"
+          className={css.searchFormInput}
           type="text"
           autoComplete="off"
           autoFocus

@@ -1,7 +1,17 @@
-export const ImageGalleryItem = ({ webformatURL, largeImageURL, tags }) => {
-  return (
-    <li className="gallery-item">
-      <img src={webformatURL} alt={tags} />
-    </li>
-  );
-};
+import { Component } from 'react';
+import css from './ImageGalleryItem.module.css';
+
+export class ImageGalleryItem extends Component {
+  render() {
+    const { webformatURL, largeImageURL, tags } = this.props;
+    return (
+      <li className={css.imageGalleryItem}>
+        <img
+          className={css.imageGalleryItemImage}
+          src={webformatURL}
+          alt={tags}
+        />
+      </li>
+    );
+  }
+}
