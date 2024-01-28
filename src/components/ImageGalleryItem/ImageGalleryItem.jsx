@@ -7,13 +7,13 @@ export class ImageGalleryItem extends Component {
     selectedImage: null,
   };
 
-  openModal = () => {
+  handleOpenModal = () => {
     this.setState({
       selectedImage: this.props.largeImageURL,
     });
   };
 
-  closeModal = () => {
+  handleCloseModal = () => {
     this.setState({ selectedImage: null });
   };
 
@@ -22,14 +22,14 @@ export class ImageGalleryItem extends Component {
     const { webformatURL, tags } = this.props;
 
     return (
-      <li className={css.imageGalleryItem} onClick={this.openModal}>
+      <li className={css.imageGalleryItem} onClick={this.handleOpenModal}>
         <img
           className={css.imageGalleryItemImage}
           src={webformatURL}
           alt={tags}
         />
         <ImageModal
-          modalClose={this.closeModal}
+          modalClose={this.handleCloseModal}
           modalOpen={selectedImage !== null}
           image={selectedImage}
         />
