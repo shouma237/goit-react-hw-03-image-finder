@@ -4,21 +4,21 @@ import ImageModal from 'components/Modal/Modal';
 
 export class ImageGalleryItem extends Component {
   state = {
-    selectedPhoto: null,
+    selectedImage: null,
   };
 
   openModal = () => {
     this.setState({
-      selectedPhoto: this.props.largeImageURL,
+      selectedImage: this.props.largeImageURL,
     });
   };
 
   closeModal = () => {
-    this.setState({ selectedPhoto: null });
+    this.setState({ selectedImage: null });
   };
 
   render() {
-    const { selectedPhoto } = this.state;
+    const { selectedImage } = this.state;
     const { webformatURL, tags } = this.props;
 
     return (
@@ -30,8 +30,8 @@ export class ImageGalleryItem extends Component {
         />
         <ImageModal
           modalClose={this.closeModal}
-          modalOpen={selectedPhoto !== null}
-          image={selectedPhoto}
+          modalOpen={selectedImage !== null}
+          image={selectedImage}
         />
       </li>
     );
