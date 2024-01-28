@@ -26,7 +26,6 @@ export class App extends Component {
     this.setState(prevState => ({ page: prevState.page + 1 }));
   };
 
-  //FIXME: NEW SEARCH WILL HAVE A NEW START FOR IMAGES
   componentDidUpdate = async (_prevProps, prevState) => {
     const { search, page } = this.state;
 
