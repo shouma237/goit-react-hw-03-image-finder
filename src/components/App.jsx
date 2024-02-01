@@ -30,31 +30,34 @@ export class App extends Component {
     const { search, page } = this.state;
 
     if (prevState.search !== search || prevState.page !== page) {
-      try {
-        this.setState({ isLoading: true, isError: false });
-
-        // fetch data
-        const fetchedImages = await getAPI(search, page);
-        const { hits, totalHits } = fetchedImages;
-
-        console.log(hits, totalHits);
-
-        if (page < 2) {
-          toast.success(`Hooray! We found ${totalHits} images!`);
-        }
-
-        // Update the state with the new images or reset the images array for a new search
-        this.setState(prevState => ({
-          images: [...prevState.images, ...hits],
-        }));
-      } catch (err) {
-        this.setState({ isError: true });
-      } finally {
-        this.setState({ isLoading: false });
-      }
+      await this.fetchImages(search, page);
     }
   };
 
+  fetchImages = async (search, page) => {
+    try {
+      this.setState({ isLoading: true, isError: false });
+
+      // fetch data from API
+      const fetchedImages = await getAPI(search, page);
+      const { hits, totalHits } = fetchedImages;
+
+      console.log(hits, totalHits);
+
+      if (page < 2) {
+        toast.success(`Hooray! We found ${totalHits} images!`);
+      }
+
+      // Update the state with the new images
+      this.setState(prevState => ({
+        images: [...prevState.images, ...hits],
+      }));
+    } catch (err) {
+      this.setState({ isError: true });
+    } finally {
+      this.setState({ isLoading: false });
+    }
+  };
   render() {
     const { images, isLoading, isError } = this.state;
     return (
