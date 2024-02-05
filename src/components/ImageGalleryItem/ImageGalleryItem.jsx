@@ -1,8 +1,15 @@
 import { Component } from 'react';
 import css from './ImageGalleryItem.module.css';
 import ImageModal from 'components/Modal/Modal';
+import PropTypes from 'prop-types';
 
 export class ImageGalleryItem extends Component {
+  static propTypes = {
+    largeImageURL: PropTypes.string.isRequired,
+    webformatURL: PropTypes.string.isRequired,
+    tags: PropTypes.string.isRequired,
+  };
+
   state = {
     selectedImage: null,
   };
@@ -30,7 +37,7 @@ export class ImageGalleryItem extends Component {
         />
         <ImageModal
           modalClose={this.handleCloseModal}
-          modalOpen={selectedImage !== null}
+          isModalOpen={selectedImage !== null}
           image={selectedImage}
         />
       </li>

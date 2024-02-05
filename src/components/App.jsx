@@ -33,8 +33,6 @@ export class App extends Component {
       const fetchedImages = await getAPI(search, page);
       const { hits, totalHits } = fetchedImages;
 
-      console.log(hits, totalHits);
-
       // Display an error message, if there is no match with the search
       if (hits.length === 0) {
         toast.error(
@@ -82,6 +80,7 @@ export class App extends Component {
 
   render() {
     const { images, isLoading, isError, isEnd } = this.state;
+
     return (
       <div className={css.app}>
         <Searchbar onSubmit={this.handleSubmit} />
